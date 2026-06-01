@@ -3,8 +3,10 @@ node_modules/
 .env.*
 
 # build
+frontend/dist/
 /dist
 /build
+
 
 # logs
 npm-debug.log*
