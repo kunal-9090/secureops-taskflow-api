@@ -1,0 +1,7 @@
+Postman variables used in SecureOps_TaskFlow.postman_collection.json:
+- base_url: http://localhost:5000/api/v1
+- access_token: (set after login)
+- refresh_token: (set after login)
+- task_id: (set after creating/getting a task)
+- user_id: (set after fetching/creating a user)
+

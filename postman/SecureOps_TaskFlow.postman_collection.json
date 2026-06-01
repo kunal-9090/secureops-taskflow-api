@@ -1,0 +1,366 @@
+{
+  "info": {
+    "name": "SecureOps TaskFlow API",
+    "description": "SecureOps TaskFlow API Postman collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth/register",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"Password123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"Password123\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Refresh Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth/refresh-token",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "refresh-token"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refreshToken\": \"{{refresh_token}}\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Auth - Profile",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/auth/profile",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "auth",
+            "profile"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Tasks - Create",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/tasks",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "tasks"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Build TaskFlow\",\n  \"description\": \"Implement assignment features\",\n  \"status\": \"pending\",\n  \"priority\": \"high\",\n  \"dueDate\": \"2026-12-31T00:00:00.000Z\",\n  \"tags\": [\"backend\", \"api\"]\n}"
+        }
+      }
+    },
+    {
+      "name": "Tasks - Get Tasks",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/tasks?status=pending&priority=high&page=1&limit=10&search=api",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "tasks"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "pending"
+            },
+            {
+              "key": "priority",
+              "value": "high"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "search",
+              "value": "api"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Tasks - Get By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/tasks/{{task_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "tasks",
+            "{{task_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Tasks - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/tasks/{{task_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "tasks",
+            "{{task_id}}"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"in-progress\",\n  \"priority\": \"medium\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Tasks - Delete (soft for users)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/tasks/{{task_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "tasks",
+            "{{task_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Admin - Users",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/admin/users",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "users"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Admin - Tasks",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/admin/tasks",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "tasks"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Admin - Stats",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/admin/stats",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "stats"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Admin - Audit Logs",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/admin/audit-logs",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "admin",
+            "audit-logs"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api/v1"
+    },
+    {
+      "key": "access_token",
+      "value": ""
+    },
+    {
+      "key": "refresh_token",
+      "value": ""
+    },
+    {
+      "key": "task_id",
+      "value": ""
+    },
+    {
+      "key": "user_id",
+      "value": ""
+    }
+  ]
+}
+

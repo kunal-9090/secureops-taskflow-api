@@ -1,0 +1,7 @@
+Add screenshots for:
+- Swagger UI
+- Register/Login
+- User dashboard task CRUD
+- Admin dashboard stats/users/tasks
+- Audit logs
+
